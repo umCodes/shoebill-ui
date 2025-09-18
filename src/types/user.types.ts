@@ -7,3 +7,4 @@ export type User = {
   credits: number,
   created_at?: string;
 };
+

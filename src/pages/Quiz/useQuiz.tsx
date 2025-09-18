@@ -74,13 +74,7 @@ const useQuiz = () => {
     function handleOpted(opt: Choice){
         setOpted(prev => !prev)
         setAnswered(prev => [...prev, index])
-        if(!answered.includes(index) && opt.correct) {
-            setPoints(prev => prev + 1)   
-            setTimeout(() =>{ 
-                    handleNext()
-                    setOpted(false);                
-                }, 2000)
-            }
+        if(!answered.includes(index) && opt.correct) setPoints(prev => prev + 1)   
     }
 
     useEffect(() =>{

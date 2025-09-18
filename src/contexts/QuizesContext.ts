@@ -3,8 +3,8 @@ import type { Quiz } from "../types/quiz.types";
 
 
 type QuizesContextType = {
-    quizes: Quiz[];
-    setQuizes: Dispatch<SetStateAction<Quiz[]>>;
+    quizes: Quiz[] | null;
+    setQuizes: Dispatch<SetStateAction<Quiz[] | null>>;
     isLoading:boolean;
     setIsLoading: Dispatch<SetStateAction<boolean>>;
     page: number;

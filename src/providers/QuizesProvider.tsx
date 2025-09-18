@@ -5,7 +5,7 @@ import { getTotalQuizes, getQuizes, deleteQuiz } from "../services/quiz.services
 import { AuthContext } from "../contexts/AuthContext";
 
 const QuizesProvider = ({children}: {children: ReactNode}) => {
-    const [quizes, setQuizes] = useState<(Quiz)[]>([]);
+    const [quizes, setQuizes] = useState<(Quiz)[] | null>(null);
     const [isLoading, setIsLoading] = useState(false);
     const [page, setPage] = useState(1);
     const [quizesTotalLength, setQuizesTotalLength] = useState(0);
