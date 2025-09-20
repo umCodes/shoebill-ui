@@ -6,6 +6,7 @@ import { LuCoins, LuLogOut, LuMenu } from "react-icons/lu";
 import { Link, useLocation } from "react-router-dom";
 import Logo from '../../public/Logo.png';
 import { AuthContext } from "@/contexts/AuthContext";
+import DialogBtn from "@/ui/DialogBtn";
 
 function Header() {
   const {toggleColorMode} = useColorMode()
@@ -73,9 +74,18 @@ function Header() {
                   </Link>
                   </>): 
                   <>
-                      <Button onClick={logOutUser} bgColor={"red.400"}>
+                          <DialogBtn 
+                        button={<Button bgColor={"red.400"}>
                           Logout <LuLogOut /> 
-                      </Button>
+                      </Button>}
+                        onClick={logOutUser}
+                        title={`Logout`}
+                        text="Do you really want to logout? You can always come back later."
+                        colorPalette="red"
+                        yes="Logout"
+                        no="Cancel"
+                    />
+                      
                   </>}
                 </Drawer.Footer>
                 <Drawer.CloseTrigger asChild>
