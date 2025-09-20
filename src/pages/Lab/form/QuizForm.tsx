@@ -26,7 +26,7 @@ const QuizForm = () => {
                     </Button>
                 </FileUpload.Trigger>
                 <Flex flexDirection={"column"} gap={1}>                    
-                    {form.file && <FileCard name={form.file.name} pages={filePages}/>}
+                    {(form.file) && <FileCard name={form.file.name} pages={filePages}/>}
                 </Flex>
             </FileUpload.Root>
 
@@ -124,7 +124,7 @@ const QuizForm = () => {
                     </Text>
                 </Box>
             </Grid>
-            <Button marginY={8} onClick={handleQuizGeneration} disabled={generating}>
+            <Button marginY={8} onClick={handleQuizGeneration} disabled={generating || !filePages}>
                 {generating ? <Box animation={"spin"}><LuLoader/></Box> : <> Generate {credits ? <><LuCoins/> {credits}</> : ""}</> }</Button>
 
         </Stack>

@@ -23,10 +23,10 @@ const QuizCard = ({quiz}: {quiz: Quiz | ClearUp}) => {
                         {quiz.type === "Quiz" && <Badge> <Text color={levelColorsHex[quiz.difficulty]}>{quiz.difficulty}</Text></Badge>}
                         <Badge>{quiz.number} questions</Badge>
                         <Badge>{quiz.generated_from}</Badge>
-                        <Badge><LuCoins/>{quiz.credits}</Badge>
                         <Badge>
                             {quiz.question_types?.join(", ")}
                         </Badge>
+                        <Badge><LuCoins/>{quiz.credits}</Badge>
                     </Stack>
                 </Card.Body>
                 <Card.Footer >

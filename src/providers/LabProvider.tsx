@@ -26,7 +26,7 @@ const LabProvider = ({children}: {children: ReactNode}) => {
         })()
     }, [form.file])
     return (
-    <LabContext.Provider value={{form, setForm, filePages, generating, setGenerating}}>
+    <LabContext.Provider value={{form, setForm, filePages, generating, setGenerating, setFilePages}}>
         {children}
     </LabContext.Provider>
   )

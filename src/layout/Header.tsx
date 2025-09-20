@@ -29,7 +29,7 @@ function Header() {
         
         <ColorModeButton ml={"auto"} onClick={toggleColorMode}/>
         
-        <Drawer.Root open={open} onOpenChange={(e) => setOpen(e.open)} placement="start">
+        <Drawer.Root open={open} size={"sm"} onOpenChange={(e) => setOpen(e.open)} placement="start">
           <Drawer.Trigger asChild>
             <IconButton variant="outline" size="sm" margin={4}>
                 <LuMenu />

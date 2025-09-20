@@ -10,7 +10,7 @@ import { useNavigate } from "react-router-dom";
 
 
 function useLab() {
-    const {form, setForm, filePages, generating, setGenerating} = useContext(LabContext)
+    const {form, setForm, filePages, setFilePages, generating, setGenerating} = useContext(LabContext)
     const {user} = useContext(AuthContext)
     const navigateTo = useNavigate();
     const credits = creditsPerPage[form.file_type === "text" ? "textPDF" : "imagePDF"] * filePages;
@@ -44,10 +44,15 @@ function useLab() {
     function handleFileUpload(e: ChangeEvent<HTMLInputElement>){
 
         const selectedFile = e.target.files?.[0] ?? null;
-            setForm({
-              ...form, file: selectedFile,
-              file_type: 'text'
-            })
+
+        if(!selectedFile)return;
+
+        setFilePages(0)
+        setForm({
+            ...form, file: selectedFile,
+            file_type: 'text'
+        })
+
       }
 
       

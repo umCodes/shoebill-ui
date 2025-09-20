@@ -101,7 +101,7 @@ const ClearUpForm = () => {
                 </Text>
             </Box>
         </Grid>
-        <Button marginY={8} onClick={handleClearUpGeneration} disabled={generating}>
+        <Button marginY={8} onClick={handleClearUpGeneration} disabled={generating || !filePages}>
             {generating ? <Box animation={"spin"}><LuLoader/></Box> : <> Generate {credits ? <><LuCoins/> {credits}</> : ""}</> }
         </Button>
 

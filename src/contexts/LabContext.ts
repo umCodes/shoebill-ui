@@ -21,12 +21,14 @@ export const defaultState = {
     setForm: () => {},
     generating: false,
     filePages: 0,
+    setFilePages: () => {},
     setGenerating: () => {},
 }
 
 export const LabContext = createContext<{
     form: QuizForm;
     filePages: number;
+    setFilePages: Dispatch<SetStateAction<number>>,
     setForm: Dispatch<SetStateAction<QuizForm>>,
     generating: boolean,
     setGenerating: Dispatch<SetStateAction<boolean>>,
