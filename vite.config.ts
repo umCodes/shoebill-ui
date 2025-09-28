@@ -32,9 +32,7 @@ export default defineConfig({
       },
       workbox: {
         runtimeCaching: [{
-          urlPattern: ({url}) => {
-            return url.pathname.startsWith('/api/quizzes') || url.pathname.startsWith('/api/quiz');
-          },
+          urlPattern: /^\/api\/(quiz|quizzes).*/,
           handler: "CacheFirst" as const,
           options: {
             cacheName: "api-cache",
