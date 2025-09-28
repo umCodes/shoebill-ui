@@ -142,7 +142,7 @@ function useLab() {
                     description: "Clear Up Generated Successfully",
                     type: "success",
                 })
-                navigateTo(`/history/${clearup._id}`)
+                navigateTo(`/quiz/${clearup._id}`)
 
                 console.log(clearup);
             } catch (error) {
