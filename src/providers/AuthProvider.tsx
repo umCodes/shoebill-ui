@@ -15,6 +15,7 @@ const AuthProvider = ({children}: {children: ReactNode}) => {
                 setUser(response);
             } catch (error) {
                 console.error(error);
+                if(retries > 5) return
                 const delay = Math.pow(2, retries) * 2000;
                 retries++;
                 setTimeout(getUser, delay);                
@@ -26,10 +27,7 @@ const AuthProvider = ({children}: {children: ReactNode}) => {
                 console.log("logged out", response)
                 setUser(null);
             } catch (error) {
-                console.error(error);
-                const delay = Math.pow(2, retries) * 2000;
-                retries++;
-                setTimeout(getUser, delay);                
+                console.error(error);               
             }    
     }
 
