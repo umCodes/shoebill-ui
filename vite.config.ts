@@ -3,6 +3,8 @@ import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 import chakratsconfigPaths from "vite-tsconfig-paths"
 import { VitePWA } from 'vite-plugin-pwa'
+import type { RouteMatchCallbackOptions } from 'workbox-core'
+
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -31,7 +33,7 @@ export default defineConfig({
       },
       workbox: {
         runtimeCaching: [{
-          urlPattern: ({url}: { url: URL }) => {
+          urlPattern: ({url}: RouteMatchCallbackOptions ) => {
             return url.pathname.startsWith('/api/quizzes') || url.pathname.startsWith('/api/quiz');
           },
           handler: "CacheFirst" as const,
