@@ -1,5 +1,5 @@
 import { Button, Flex, Heading, HStack, Image, Text } from "@chakra-ui/react"
-import Logo from "../../../public/Logo.png";
+import Logo from "../../../public/logo.png";
 import { Link } from "react-router-dom";
 import { AuthContext } from "@/contexts/AuthContext";
 import { useContext } from "react";
