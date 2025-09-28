@@ -24,3 +24,10 @@ createRoot(document.getElementById('root')!).render(
     </ChakraProvider>
   </StrictMode>,
 )
+
+
+// hide splash when app is ready
+window.addEventListener('DOMContentLoaded', () => {
+  const splash = document.getElementById('splash-screen')
+  if (splash) splash.style.display = 'none'
+})
