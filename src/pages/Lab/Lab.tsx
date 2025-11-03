@@ -1,11 +1,17 @@
 import { Flex, SegmentGroup } from "@chakra-ui/react";
 import QuizForm from "./form/QuizForm";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ClearUpForm from "./form/ClearUpForm";
+import useLab from "./useLab";
 
 type Services = "Quiz" | "Clear Up";
 const Lab = () => {
   const [service, setService] = useState<Services>("Quiz");
+  const {setForm} = useLab();
+
+  useEffect(() => {
+    if(service === "Quiz") setForm((prev) => ({...prev, file_type: 'text'}));
+  }, [service])
 
   return (
     <>

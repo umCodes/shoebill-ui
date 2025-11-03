@@ -159,6 +159,7 @@ function useLab() {
 
         return({
             form,
+            setForm,
             generating,
             filePages,
             credits,

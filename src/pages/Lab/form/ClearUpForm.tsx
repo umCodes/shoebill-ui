@@ -34,7 +34,7 @@ const ClearUpForm = () => {
                 </Box>
                 <Box>
                     <Text color="GrayText">
-                        Only the first 10 pages of the file will be considered.
+                        Only the first 5 pages of the file will be considered.
                     </Text>
                 </Box>
             </Grid>

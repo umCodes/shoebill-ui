@@ -96,21 +96,6 @@ const QuizForm = () => {
                             <RadioCard.ItemIndicator />
                         </RadioCard.ItemControl>
                     </RadioCard.Item>
-                    <RadioCard.Item value="image">
-                        <RadioCard.ItemHiddenInput onChange={handleFileType}/>
-                        <RadioCard.ItemControl>
-                        <RadioCard.ItemContent>
-                            <RadioCard.ItemText>Image PDF</RadioCard.ItemText>
-                            <RadioCard.ItemDescription>
-                                <Flex alignItems={"center"} gap={2} marginY={1}>    
-                                    <LuCoins/> 
-                                    {creditsPerPage["imagePDF"]} credits/page
-                                </Flex>
-                            </RadioCard.ItemDescription>
-                        </RadioCard.ItemContent>
-                        <RadioCard.ItemIndicator />
-                        </RadioCard.ItemControl>
-                    </RadioCard.Item>
                 </HStack>
             </RadioCard.Root>
 
