@@ -27,10 +27,11 @@ Generate quizzes instantly and study smarter. This is the React + TypeScript UI 
    - Node.js 18+ and npm
 2. **Install dependencies**
    ```bash
+   git clone https://github.com/umCodes/shoebill-ui 
    npm install
    ```
 3. **Environment variables**
-   Copy `.env.sample` to `.env` (or `.env.local`) and adjust values:
+   Copy `.env.example` to `.env` (or `.env.local`) and adjust values:
    ```bash
    cp .env.sample .env
    # then edit .env
