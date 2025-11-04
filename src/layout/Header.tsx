@@ -4,7 +4,7 @@ import { Avatar, Box, Button, CloseButton, Drawer, Flex, Heading, IconButton, Po
 import { useContext, useState } from "react";
 import { LuCoins, LuLogOut, LuMenu } from "react-icons/lu";
 import { Link, useLocation } from "react-router-dom";
-import Logo from '../../public/Logo.png';
+import Logo from '../../public/logo.png';
 import { AuthContext } from "@/contexts/AuthContext";
 import DialogBtn from "@/ui/DialogBtn";
 

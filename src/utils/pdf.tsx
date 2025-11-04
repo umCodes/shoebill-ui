@@ -1,7 +1,7 @@
 import jsPDF from 'jspdf';
 import 'jspdf-autotable';
 import type { ClearUp, FIB, MCQ, Quiz, SAQ, TF } from '../types/quiz.types';
-import Logo from '../../public/Logo.png';
+import Logo from '../../public/logo.png';
 
 const websiteLink = "";
 const appName = "ShoeBill AI"
