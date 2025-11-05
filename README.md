@@ -1,6 +1,8 @@
 ## ShoeBill AI — UI
 
 Generate quizzes instantly and study smarter. This is the React + TypeScript UI for ShoeBill AI, featuring quiz creation, history, feedback, PDF export, theming, and PWA support.
+🔗 [Live Demo](https://shoebill-ui.onrender.com/)
+🛠️ [Backend repo](https://github.com/umCodes/shoebill-api)
 
 ### Features
 - **Quiz generation & clear-up**: Create quizzes and “clear-up” sheets from content.
