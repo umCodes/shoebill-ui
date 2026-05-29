@@ -1,4 +1,5 @@
 import axios from "axios";
+import { logger } from "../utils/logs";
 
 
 
@@ -18,7 +19,7 @@ export async function getPages(file: File) {
         const pages = await response.data;    
         return pages;
     } catch (error) {
-        console.error(error);
+        logger.error(JSON.stringify(error));
         throw error;
 
     }

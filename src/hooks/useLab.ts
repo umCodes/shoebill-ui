@@ -1,10 +1,10 @@
-import { toaster } from "@/components/ui/toaster";
-import { maxNumOfQuestions, minNumOfQuestions } from "@/constants/constriants.constants";
-import { creditsPerPage } from "@/constants/credits.constants";
-import { AuthContext } from "@/contexts/AuthContext";
-import { LabContext } from "@/contexts/LabContext";
-import { createClearUp, createQuiz } from "@/services/quiz.services";
-import { difficultyLevels, questionTypes, type DifficultyLevels,  type QuestionTypes } from "@/types/quiz.types";
+// import { toaster } from "../components/ui/toaster";
+import { maxNumOfQuestions, minNumOfQuestions } from "../constants/constriants.constants";
+import { creditsPerPage } from "../constants/credits.constants";
+import { AuthContext } from "../contexts/AuthContext";
+import { LabContext } from "../contexts/LabContext";
+import { createClearUp, createQuiz } from "../services/quiz.services";
+import { difficultyLevels, questionTypes, type DifficultyLevels,  type QuestionTypes } from "../types/quiz.types";
 import { useContext, type ChangeEvent } from "react"
 import { useNavigate } from "react-router-dom";
 
@@ -68,22 +68,25 @@ function useLab() {
             if(!user) return navigateTo("/register");
            
             if(user.credits < credits)
-                return toaster.create({
-                        description: "Insufficient Credits",
-                        type: "info",
-                    })
+                return 
+            // toaster.create({
+            //             description: "Insufficient Credits",
+            //             type: "info",
+            //         })
 
             if(!form.file)
-                return toaster.create({
-                        description: "Please upload a file",
-                        type: "info",
-                    })
+                return
+            //  toaster.create({
+            //             description: "Please upload a file",
+            //             type: "info",
+            //         })
   
             if(!form.number || form.number > maxNumOfQuestions || form.number < minNumOfQuestions)
-                return toaster.create({
-                        description: `Number of questions must be between ${minNumOfQuestions} and ${maxNumOfQuestions}`,
-                        type: "info",
-                    })
+                return 
+            // toaster.create({
+            //             description: `Number of questions must be between ${minNumOfQuestions} and ${maxNumOfQuestions}`,
+            //             type: "info",
+            //         })
 
             const QuizForm = new FormData();
 
@@ -96,19 +99,19 @@ function useLab() {
             try {
                 setGenerating(true)
                 const quiz = await createQuiz(QuizForm);
-                toaster.create({
-                    description: "Quiz Generated Successfully",
-                    type: "success",
-                })
+                // toaster.create({
+                //     description: "Quiz Generated Successfully",
+                //     type: "success",
+                // })
                 navigateTo(`/quiz/${quiz._id}`)
 
                 console.log(quiz);
             } catch (error) {
                 console.log(error);   
-                toaster.create({
-                    description: "Something went wrong, please try again.",
-                    type: "error",
-                })             
+                // toaster.create({
+                //     description: "Something went wrong, please try again.",
+                //     type: "error",
+                // })             
             }
             setGenerating(false)
             return
@@ -119,16 +122,18 @@ function useLab() {
             if(!user) return navigateTo("/register");
            
             if(user.credits < credits)
-                return toaster.create({
-                        description: "Insufficient Credits",
-                        type: "info",
-                    })
+                return 
+            // toaster.create({
+            //             description: "Insufficient Credits",
+            //             type: "info",
+            //         })
 
             if(!form.file)
-                return toaster.create({
-                        description: "Please upload a file",
-                        type: "info",
-                    })
+                return 
+            // toaster.create({
+            //             description: "Please upload a file",
+            //             type: "info",
+            //         })
             const QuizForm = new FormData();
 
             QuizForm.append('file', form.file)
@@ -138,19 +143,19 @@ function useLab() {
             try {
                 setGenerating(true)
                 const clearup = await createClearUp(QuizForm);
-                toaster.create({
-                    description: "Clear Up Generated Successfully",
-                    type: "success",
-                })
+                // toaster.create({
+                //     description: "Clear Up Generated Successfully",
+                //     type: "success",
+                // })
                 navigateTo(`/quiz/${clearup._id}`)
 
                 console.log(clearup);
             } catch (error) {
                 console.log(error); 
-                toaster.create({
-                    description: "Something went wrong, please try again.",
-                    type: "error",
-                })                            
+                // toaster.create({
+                //     description: "Something went wrong, please try again.",
+                //     type: "error",
+                // })                            
             }
             
             setGenerating(false)

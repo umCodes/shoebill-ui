@@ -8,6 +8,7 @@ export type QuizForm = {
     number: number;
     file: null | File;
     file_type: FileType;
+    // mode: "quiz" | "extract";
 }
 
 export const defaultState = {
@@ -17,6 +18,7 @@ export const defaultState = {
         number: 5,
         file: null,
         file_type: 'text' as FileType,
+        // mode: "quiz" as "quiz" | "extract"
     },
     setForm: () => {},
     generating: false,

@@ -1,7 +1,5 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
-import tailwindcss from '@tailwindcss/vite'
-import chakratsconfigPaths from "vite-tsconfig-paths"
 import { VitePWA } from 'vite-plugin-pwa'
 
 
@@ -9,8 +7,6 @@ import { VitePWA } from 'vite-plugin-pwa'
 export default defineConfig({
   plugins: [
     react(),
-    tailwindcss(), 
-    chakratsconfigPaths(),
     VitePWA({
       registerType: 'autoUpdate',
       includeAssets: ['logo.png'],

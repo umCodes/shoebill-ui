@@ -1,33 +1,30 @@
-import { Provider as ChakraProvider } from "@/components/ui/provider"
-
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
-import LabProvider from "./providers/LabProvider.tsx"
-import { RouterProvider } from "react-router-dom"
-import { router } from "./router.tsx"
-import AuthProvider from "./providers/AuthProvider.tsx"
-import { Toaster } from "@/components/ui/toaster"
-import QuizesProvider from "./providers/QuizesProvider.tsx"
+import AuthProvider from './providers/AuthProvider.tsx'
+import LabProvider from './providers/LabProvider.tsx'
+import { RouterProvider } from 'react-router-dom'
+import { router } from './router.tsx'
+import QuizesProvider from './providers/QuizesProvider.tsx'
+import { ToastProvider } from './providers/TostProvider.tsx'
+import { ConfirmProvider } from './providers/ConfirmProvider.tsx'
+import { ThemeProvider } from './providers/ThemeProvider.tsx'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <ChakraProvider>
+    <ThemeProvider>
+      <ConfirmProvider>
+        <ToastProvider>
             <LabProvider>
               <AuthProvider>
                 <QuizesProvider>
-                  <RouterProvider router={router}/>
-                  <Toaster />
+                    <RouterProvider router={router}/>
                 </QuizesProvider>
               </AuthProvider>
             </LabProvider>
-    </ChakraProvider>
+        </ToastProvider>
+      </ConfirmProvider>
+    </ThemeProvider>
   </StrictMode>,
 )
 
-
-// hide splash when app is ready
-window.addEventListener('DOMContentLoaded', () => {
-  const splash = document.getElementById('splash-screen')
-  if (splash) splash.style.display = 'none'
-})

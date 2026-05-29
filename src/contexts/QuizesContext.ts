@@ -1,4 +1,4 @@
-import { createContext, type Dispatch, type SetStateAction } from "react";
+import { createContext, useContext, type Dispatch, type SetStateAction } from "react";
 import type { Quiz } from "../types/quiz.types";
 
 
@@ -22,3 +22,10 @@ export const QuizesContext = createContext<QuizesContextType>({
     quizesTotalLength: 0,
     handleDeleteQuiz: () => {}
 })
+
+
+export function useQuiz(): QuizesContextType {
+  const ctx = useContext(QuizesContext);
+  if (!ctx) throw new Error('useQuiz must be used within a QuizProvider');
+  return ctx;
+}

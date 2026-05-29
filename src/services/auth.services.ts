@@ -1,7 +1,5 @@
 import axios from "axios";
-
-
-
+import { logger } from "../utils/logs";
 
 
 type SignupForm = {
@@ -16,7 +14,7 @@ export async function signup(form: SignupForm) {
         const response = await axios.post(String(import.meta.env.VITE_BASE_API_PATH) + "/auth/signup", form, {withCredentials: true})
         return response.data;
     } catch (error) {
-        console.error(error);
+        logger.error(error);
         throw error;
     }
 }
@@ -27,16 +25,13 @@ type LoginForm = {
         password: string;
 }
 export async function login(form: LoginForm) {
-    console.log('response');
-
-    console.warn(String(import.meta.env.VITE_BASE_API_PATH))
+    // console.warn(String(import.meta.env.VITE_BASE_API_PATH))
         
     try {        
         const response = await axios.post(String(import.meta.env.VITE_BASE_API_PATH) + "/auth/login", form, {withCredentials: true})
-        
         return response.data;
     } catch (error) {
-        console.error(error);
+        logger.error(error);
         throw error;
     }
 }
@@ -47,7 +42,7 @@ export async function logout() {
         const response = await axios.delete(String(import.meta.env.VITE_BASE_API_PATH) + "/auth/logout",  {withCredentials: true})
         return response.data;
     } catch (error) {
-        console.error(error);
+        logger.error(error);
         throw error;
     }
 }
@@ -55,11 +50,10 @@ export async function getUser() {
 
     try {        
         const response = await axios.get(String(import.meta.env.VITE_BASE_API_PATH) + "/user",  {withCredentials: true})
-        console.log(response);
-        
+        logger.raw(response);
         return response.data;
     } catch (error) {
-        console.error(error);
+        logger.error(error);
         throw error;
     }
 }

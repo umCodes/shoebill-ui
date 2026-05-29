@@ -1,13 +1,16 @@
 import axios from "axios";
+import { logger } from "../utils/logs";
 
 export async function createQuiz(form: FormData) {
     
     try {
+        console.log("hey");
+        
         const response = await axios.post(String(import.meta.env.VITE_BASE_API_PATH) + '/api/quiz', form ,{withCredentials: true})
         const quiz = await response.data;    
         return quiz;
     } catch (error) {
-        console.error(error);
+        logger.error(JSON.stringify(error));
         throw error;
     }
 
@@ -20,7 +23,7 @@ export async function createClearUp(form: FormData) {
         const quiz = await response.data;    
         return quiz;
     } catch (error) {
-        console.error(error);
+        logger.error(JSON.stringify(error));
         throw error;
     }
 
@@ -37,7 +40,7 @@ export async function getQuizes(page=0) {
         const quizes = await response.data;    
         return quizes;
     } catch (error) {
-        console.error(error);
+        logger.error(JSON.stringify(error));
         throw error;
     }
 
@@ -49,7 +52,7 @@ export async function getTotalQuizes() {
         const total = await response.data;    
         return total.totalQuizzes;
     } catch (error) {
-        console.error(error);
+        logger.error(JSON.stringify(error));
         throw error;
     }
 
@@ -64,7 +67,7 @@ export async function getQuiz(id: string) {
         const quiz = await response.data;    
         return quiz;
     } catch (error) {
-        console.error(error);
+        logger.error(JSON.stringify(error));
         throw error;
 
     }
@@ -82,7 +85,7 @@ export async function deleteQuiz(id: string) {
         const quiz = await response.data;    
         return quiz;
     } catch (error) {
-        console.error(error);
+        logger.error(JSON.stringify(error));
         throw error;
 
     }
@@ -97,7 +100,7 @@ export async function checkAnswer(question: string, answer: string, explanation:
 
         return validation;
     } catch (error) {
-        console.error(error);
+        logger.error(JSON.stringify(error));
         throw error;
 
     }
