@@ -145,7 +145,7 @@ export default function Quiz() {
         {/* Options */}
         <div>
           <div className="quiz-options">
-            {question?.type === "MCQ" || question?.type === "TF"  &&
+            {(question?.type === "MCQ" || question?.type === "TF") &&
               question.options.map((option: Choice) => {
                 let cls = "quiz-option-btn";
                 if (opted) {
