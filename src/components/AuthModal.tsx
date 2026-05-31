@@ -3,7 +3,7 @@ import "../styles/AuthModal.css";
 import { getUser, login, signup } from "../services/auth.services";
 import { AuthContext } from "../contexts/AuthContext";
 import type { AxiosError, AxiosResponse } from "axios";
-import { useToast } from "../contexts/ToastContext";
+// import { useToast } from "../contexts/ToastContext";
 
 export default function AuthModal({
   isOpen,
@@ -12,56 +12,63 @@ export default function AuthModal({
   isOpen: boolean;
   onClose: () => void;
 }) {
-  const { toast } = useToast()
-  const {setUser} = useContext(AuthContext)
+  // const { toast } = useToast();
+  const { setUser } = useContext(AuthContext);
   const [mode, setMode] = useState<"login" | "signup">("login");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [name, setName] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   if (!isOpen) return null;
 
   const handleSubmit: SubmitEventHandler<HTMLFormElement> = async (e) => {
-    e.preventDefault(); 
+    e.preventDefault();
+    setError(null);
+    setIsLoading(true);
     try {
-      if (mode === "login") await login({
-            email,
-            password
-        })
-      else await signup({
-              name,
-              email,
-              password,
-              confirmPass: confirmPassword
-          })
+      if (mode === "login") {
+        await login({ email, password });
+      } else {
+        await signup({ name, email, password, confirmPass: confirmPassword });
+      }
 
-      const user = await getUser()
-      setUser(user)
+      const user = await getUser();
+      setUser(user);
       setEmail("");
       setPassword("");
       setConfirmPassword("");
       setName("");
     } catch (error) {
-      const err = error as AxiosError
-      const {message} = (err.response as AxiosResponse).data
-      console.log(message)
-      if (message === "User not found") toast("No account found with this email. Try Signing Up.", "error")
+      const err = error as AxiosError;
+      const status = err.response?.status;
+      const message = (err.response as AxiosResponse)?.data?.message;
+
+      if (status === 404 || message === "User not found") {
+        setError("No account found with this email. Try signing up.");
+      } else if (status === 400 || message === "Invalid credentials") {
+        setError("Incorrect password. Please try again.");
+      } else if (status === 500) {
+        setError("A server error occurred. Please try again later.");
+      } else {
+        setError("Something went wrong. Please try again.");
+      }
+    } finally {
+      setIsLoading(false);
     }
   };
 
   const switchMode = (newMode: "login" | "signup") => {
     setMode(newMode);
-    // setEmail("");
-    // setPassword("");
-    // setConfirmPassword("");
-    // setName("");
+    setError(null);
   };
 
   return (
-    <div className="auth-overlay" >
+    <div className="auth-overlay">
       <div className="auth-modal" onClick={(e) => e.stopPropagation()}>
-        <button className="auth-close"  aria-label="Close" onClick={onClose}>
+        <button className="auth-close" aria-label="Close" onClick={onClose}>
           ✕
         </button>
 
@@ -100,6 +107,7 @@ export default function AuthModal({
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 required
+                disabled={isLoading}
               />
             </div>
           )}
@@ -113,6 +121,7 @@ export default function AuthModal({
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
+              disabled={isLoading}
             />
           </div>
 
@@ -125,6 +134,7 @@ export default function AuthModal({
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
+              disabled={isLoading}
             />
           </div>
 
@@ -138,20 +148,23 @@ export default function AuthModal({
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
                 required
+                disabled={isLoading}
               />
             </div>
           )}
 
-          <button type="submit" className="auth-submit" >
-            {mode === "login" ? "Sign In" : "Create Account"}
+          {error && <p className="auth-error">{error}</p>}
+
+          <button type="submit" className="auth-submit" disabled={isLoading}>
+            {isLoading
+              ? mode === "login"
+                ? "Signing in…"
+                : "Creating account…"
+              : mode === "login"
+              ? "Sign In"
+              : "Create Account"}
           </button>
         </form>
-
-        {/* <div className="auth-divider">
-          <span>or</span>
-        </div>
-
-        <button className="auth-social">Continue with Google</button> */}
       </div>
     </div>
   );
