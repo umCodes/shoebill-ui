@@ -48,7 +48,7 @@ const Lab = () => {
   const inputRef = useRef<HTMLInputElement>(null);
   const navigateTo = useNavigate();
 
-const [filePages, setFilePages] = useState(1);
+const [filePages, setFilePages] = useState(0);
 
   const handleFile = async (f: File) => {
     if (f?.type !== "application/pdf") return;
