@@ -237,3 +237,10 @@ body {
     font-size: 16px;
   }
 }
+
+.auth-error {
+  color: #e53e3e;
+  font-size: 0.875rem;
+  margin: -4px 0 8px;
+  text-align: center;
+}
